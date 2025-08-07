@@ -74,7 +74,19 @@ def recursive_sum(arr: list[int|float])->int|float:
 
 def recursive_max(arr: list[int|float])->int|float:
 
-    if len(arr) ==1: return arr[0]
+    if not arr:  return 0
+
+    if len(arr) == 1: return arr[0]
 
     max_elm = recursive_max(arr[1:])
     return arr[0] if arr[0] > max_elm else max_elm
+
+# ************  Задача №5
+
+def recursive_sum_even_elem(arr: list[int | float]) -> int | float:
+
+    if not arr:  return 0
+
+    return 0 + arr[0] if recursive_sum_even_elem(arr[1:]) % 2 == 0 else 0
+
+print(recursive_sum_even_elem([2,2,2,2]))
