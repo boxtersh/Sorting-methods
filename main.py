@@ -1,14 +1,14 @@
 from random import randint as rnd
 import time
 # ********************************** Модуль №5. Задание №3 ***************************************************
-# Задача №1. Сортировка “Пузырька” 10.79, 17.71 (с повтором) - [rnd(1,100) for _ in range(10000)]
+# ************  Задача №1. Сортировка “Пузырька” 10.79, 17.71 (с повтором) - [rnd(1,100) for _ in range(10000)]
 def __check_list_empty(arr):
 
     assert isinstance(arr, list), f'Ожидался класс: list, получили: {type(arr)} '
 
 
 def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y: x > y,
-                                         key = lambda obj: obj )->list[int|float]:
+                                                        key = lambda obj: obj )->list[int|float]:
     """
     Пример:
     [8,3,5,1],  []
@@ -25,7 +25,6 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
 
     _start = time.time()
 
-
     for i in range(len_arr - 1):
         for j in range(len_arr - 1 - i):
 
@@ -35,6 +34,30 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
     end = time.time() - _start
 
     return arr
-bubble_sorting(4)
 
 
+# ************  Задача №2. Сортировка выбором + подсчет операций 6.79, , 13.22 (с повтором) - [rnd(1,100) for _ in range(10000)]
+
+def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
+                                                    key = lambda obj: obj)->(list[int|float], int, int):
+    __check_list_empty(arr)
+    _start = time.time()
+    len_arr = len(arr)
+    count_compare = 0
+    count_swap = 0
+
+    for i in  range(len_arr - 1):
+        max_i = i
+        for j in range(i+1, len_arr):
+
+            if order_by(key(arr[max_i]), key(arr[j])):
+                max_i = j
+
+            count_compare = count_compare + 1
+
+        if max_i != i:
+            arr[i], arr[max_i] = arr[max_i], arr[i]
+            count_swap = count_swap + 1
+
+    end = time.time() - _start
+    return arr, count_compare, count_swap
