@@ -53,11 +53,11 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
             if order_by(key(arr[max_i]), key(arr[j])):
                 max_i = j
 
-            count_compare = count_compare + 1
+            count_compare += 1
 
         if max_i != i:
             arr[i], arr[max_i] = arr[max_i], arr[i]
-            count_swap = count_swap + 1
+            count_swap += 1
 
     end = time.time() - _start
     return arr, count_compare, count_swap
