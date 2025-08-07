@@ -69,3 +69,12 @@ def recursive_sum(arr: list[int|float])->int|float:
     if not arr: return 0
 
     return arr[0] + recursive_sum(arr[1:])
+
+# ************  Задача №4
+
+def recursive_max(arr: list[int|float])->int|float:
+
+    if len(arr) ==1: return arr[0]
+
+    max_elm = recursive_max(arr[1:])
+    return arr[0] if arr[0] > max_elm else max_elm
