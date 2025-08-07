@@ -36,7 +36,7 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
     return arr
 
 
-# ************  Задача №2. Сортировка выбором + подсчет операций 6.79, , 13.22 (с повтором) - [rnd(1,100) for _ in range(10000)]
+# ************  Задача №2. Сортировка выбором + подсчет операций 6.79, 13.22 (с повтором) - [rnd(1,100) for _ in range(10000)]
 
 def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
                                                     key = lambda obj: obj)->(list[int|float], int, int):
@@ -61,3 +61,11 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
 
     end = time.time() - _start
     return arr, count_compare, count_swap
+
+# ************  Задача №3
+
+def recursive_sum(arr: list[int|float])->int|float:
+
+    if not arr: return 0
+
+    return arr[0] + recursive_sum(arr[1:])
