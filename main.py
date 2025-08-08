@@ -1,11 +1,8 @@
 from random import randint as rnd
 import time
+import validate as vld
 # ********************************** Модуль №5. Задание №3 ***************************************************
 # ************  Задача №1. Сортировка “Пузырька” 10.79, 17.71 (с повтором) - [rnd(1,100) for _ in range(10000)]
-def __check_list_empty(array):
-
-    assert isinstance(array, list), f'Ожидался класс: list, получили: {type(array)} '
-
 
 def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y: x > y,
                                                         key = lambda obj: obj )->list[int|float]:
@@ -19,7 +16,7 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
     :param key: ключ сортировки (сам объект)
     :return: отсортированный массив или пустой в случае передачи пустого массива
     """
-    __check_list_empty(arr)
+    vld.__check_type_list(arr)
     len_arr = len(arr)
     if len_arr == 0: return []
 
@@ -40,7 +37,7 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
 
 def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
                                                     key = lambda obj: obj)->(list[int|float], int, int):
-    __check_list_empty(arr)
+    vld.__check_type_list(arr)
     _start = time.time()
     len_arr = len(arr)
     count_compare = 0
@@ -66,7 +63,7 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
 
 def recursive_sum(array: list[int|float])->int|float:
 
-    __check_list_empty(array)
+    vld.__check_type_list(array)
 
     if not array:  return 0
 
@@ -76,7 +73,7 @@ def recursive_sum(array: list[int|float])->int|float:
 
 def recursive_max(array: list[int|float])->int|float:
 
-    __check_list_empty(array)
+    vld.__check_type_list(array)
 
     if not array:  return 0
 
@@ -90,6 +87,8 @@ def recursive_max(array: list[int|float])->int|float:
 
 def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
+    vld.__check_type_list(array)
+
     if not array: return 0
 
     if len(array) == 1: return array[0] if array[0] % 2 == 0 else 0
@@ -101,17 +100,46 @@ def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
 def reverse_string(line: str) -> str:
 
-    n = len(line)
+    vld.__check_type_str(line)
+
+    lnlin = len(line)
 
     if not line: return line
 
-    if n == 1: return line[0]
+    if lnlin == 1: return line[0]
 
-    return line[n-1] + reverse_string(line[:n-1])
+    return line[lnlin-1] + reverse_string(line[:lnlin-1])
+
+# ************  Задача №7
+
+def is_palindrome(line: str) -> bool:
+    """
+    Пример:
+    лешанаполкеклопанашел -> True
+    "12345" -> False
+
+    :param line: Строка для проверки ее на палиндром
+    :return: True если палиндром, иначе False
+    """
+
+    lnlin = len(line)
+
+    if not line: return True
+
+    if lnlin == 1: return True
+
+    slice = line[1:lnlin-1]
+
+    is_palindrome(slice)
+
+    right_elm = slice[len(slice) - 1]
+    left_elm = slice[0]
+
+    return True if left_elm == right_elm else False
 
 
 
-# print(reverse_string('[1,2,3,8]'))
+# print(is_palindrome('0123456789876543220'))
 
 
 
