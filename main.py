@@ -62,6 +62,14 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
 # ************  Задача №3
 
 def recursive_sum(array: list[int|float])->int|float:
+    """
+    Функция принимает на вход массив элементов и возвращает сумму всех элементов массива
+    Пример:
+    [1,3,2,6] -> 12
+    [] -> 0
+    :param array: Массив элементов
+    :return: Сумма всех элементов массива
+    """
 
     vld.__check_type_list(array)
 
@@ -71,7 +79,15 @@ def recursive_sum(array: list[int|float])->int|float:
 
 # ************  Задача №4
 
-def recursive_max(array: list[int|float])->int|float:
+def recursive_max(array: list[int|float]) -> int|float:
+    """
+    Функция принимает на вход массив элементов и возвращает максимальный элемент массива
+    Пример:
+    [1,3,2,6.4,2,7,9,34,0,2.2] -> 34
+    [] -> 0
+    :param array: Массив элементов
+    :return: Максимальный элемент массива
+    """
 
     vld.__check_type_list(array)
 
@@ -87,6 +103,15 @@ def recursive_max(array: list[int|float])->int|float:
 
 def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
+    """
+    Функция принимает на вход массив элементов и возвращает сумму всех четных элементов массива
+    Пример:
+    [1,2,3,4,5,6] -> 12
+    [] -> 0
+    :param array: Массив элементов
+    :return: Сумма всех четных элементов массива
+    """
+
     vld.__check_type_list(array)
 
     if not array: return 0
@@ -99,6 +124,14 @@ def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 # ************  Задача №6
 
 def reverse_string(line: str) -> str:
+    """
+    Функция принимает на вход строку и возвращает её перевёрнутую версию.
+    Пример:
+    "123456789" -> "987654321"
+    пустая строка -> пустая строка
+    :param line: Строка для преобразования
+    :return: Перевёрнутая строка
+    """
 
     vld.__check_type_str(line)
 
@@ -121,6 +154,7 @@ def is_palindrome(line: str) -> bool:
     :param line: Строка для проверки ее на палиндром
     :return: True если палиндром, иначе False
     """
+    vld.__check_type_str(line)
 
     lnlin = len(line)
 
