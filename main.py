@@ -2,9 +2,9 @@ from random import randint as rnd
 import time
 # ********************************** Модуль №5. Задание №3 ***************************************************
 # ************  Задача №1. Сортировка “Пузырька” 10.79, 17.71 (с повтором) - [rnd(1,100) for _ in range(10000)]
-def __check_list_empty(arr):
+def __check_list_empty(array):
 
-    assert isinstance(arr, list), f'Ожидался класс: list, получили: {type(arr)} '
+    assert isinstance(array, list), f'Ожидался класс: list, получили: {type(array)} '
 
 
 def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y: x > y,
@@ -64,29 +64,39 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
 
 # ************  Задача №3
 
-def recursive_sum(arr: list[int|float])->int|float:
+def recursive_sum(array: list[int|float])->int|float:
 
-    if not arr: return 0
+    __check_list_empty(array)
 
-    return arr[0] + recursive_sum(arr[1:])
+    if not array:  return 0
+
+    return array[0] + recursive_sum(array[1:])
 
 # ************  Задача №4
 
-def recursive_max(arr: list[int|float])->int|float:
+def recursive_max(array: list[int|float])->int|float:
 
-    if not arr:  return 0
+    __check_list_empty(array)
 
-    if len(arr) == 1: return arr[0]
+    if not array:  return 0
 
-    max_elm = recursive_max(arr[1:])
-    return arr[0] if arr[0] > max_elm else max_elm
+    if len(array) == 1: return array[0]
+
+    max_elm = recursive_max(array[1:])
+
+    return array[0] if array[0] > max_elm else max_elm
 
 # ************  Задача №5
 
-def recursive_sum_even_elem(arr: list[int | float]) -> int | float:
+def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
-    if not arr:  return 0
+    if not array: return 0
 
-    return 0 + arr[0] if recursive_sum_even_elem(arr[1:]) % 2 == 0 else 0
+    if len(array) == 1: return array[0] if array[0] % 2 == 0 else 0
 
-print(recursive_sum_even_elem([2,2,2,2]))
+
+    return (array[0] if array[0] % 2 == 0 else 0) + recursive_sum_even_elem(array[1:])
+
+print(recursive_sum_even_elem([1,2,3,8]))
+
+
