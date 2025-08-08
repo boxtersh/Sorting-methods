@@ -97,6 +97,22 @@ def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
     return (array[0] if array[0] % 2 == 0 else 0) + recursive_sum_even_elem(array[1:])
 
-print(recursive_sum_even_elem([1,2,3,8]))
+# ************  Задача №6
+
+def reverse_string(line: str) -> str:
+
+    n = len(line)
+
+    if not line: return line
+
+    if n == 1: return line[0]
+
+    return line[n-1] + reverse_string(line[:n-1])
+
+
+
+# print(reverse_string('[1,2,3,8]'))
+
+
 
 
