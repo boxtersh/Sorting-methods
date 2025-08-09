@@ -1,4 +1,4 @@
-from random import randint as rnd
+#from random import randint as rnd
 import time
 import validate as vld
 # ********************************** Модуль №5. Задание №3 ***************************************************
@@ -7,10 +7,13 @@ import validate as vld
 def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y: x > y,
                                                         key = lambda obj: obj )->list[int|float]:
     """
+    Функция принимает на вход массив элементов, анонимную функцию key (задает ключ сортировки)
+    и анонимную функцию order_by (задает признак сортировки).
+    Возвращает отсортированный массив элементов по методу сортировки “Пузырька”.
     Пример:
-    [8,3,5,1],  []
+    [8,3,5,1], []
     ответ:
-    [1,3,5,8],  []
+    [1,3,5,8], []
     :param arr: Массив для сортировки элементов
     :param order_by: условие сортировки (по возрастанию)
     :param key: ключ сортировки (сам объект)
@@ -32,11 +35,25 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
 
     return arr
 
-
 # ************  Задача №2. Сортировка выбором + подсчет операций 6.79, 13.22 (с повтором) - [rnd(1,100) for _ in range(10000)]
 
 def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
                                                     key = lambda obj: obj)->(list[int|float], int, int):
+    """
+    Функция принимает на вход массив элементов, анонимную функцию key (задает ключ сортировки)
+    и анонимную функцию order_by (задает признак сортировки),
+    производит сортировку методом “Выбора” (простых перестановок), а также
+    подсчитывает количество операций сравнения и обмена элементов,
+    возвращает эти значения вместе с отсортированным массивом
+    Пример:
+    [2,4,1,5,2,3,1,7,6,0,1]
+    ([7, 6, 5, 4, 3, 2, 2, 1, 1, 1, 0], 55, 7)
+    :param arr: Массив для сортировки элементов
+    :param order_by: условие сортировки (по убыванию)
+    :param key: ключ сортировки (сам объект)
+    :return: отсортированный массив или пустой в случае передачи пустого массива
+    количество операций сравнения и обмена элементов
+    """
     vld.__check_type_list(arr)
     _start = time.time()
     len_arr = len(arr)
@@ -59,7 +76,7 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
     end = time.time() - _start
     return arr, count_compare, count_swap
 
-# ************  Задача №3
+# ************ Задача №3
 
 def recursive_sum(array: list[int|float])->int|float:
     """
@@ -77,7 +94,7 @@ def recursive_sum(array: list[int|float])->int|float:
 
     return array[0] + recursive_sum(array[1:])
 
-# ************  Задача №4
+# ************ Задача №4
 
 def recursive_max(array: list[int|float]) -> int|float:
     """
@@ -99,7 +116,7 @@ def recursive_max(array: list[int|float]) -> int|float:
 
     return array[0] if array[0] > max_elm else max_elm
 
-# ************  Задача №5
+# ************ Задача №5
 
 def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
@@ -121,14 +138,14 @@ def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
     return (array[0] if array[0] % 2 == 0 else 0) + recursive_sum_even_elem(array[1:])
 
-# ************  Задача №6
+# ************ Задача №6
 
 def reverse_string(line: str) -> str:
     """
     Функция принимает на вход строку и возвращает её перевёрнутую версию.
     Пример:
     "123456789" -> "987654321"
-    пустая строка -> пустая строка
+    пустая строка -> пустая строка.
     :param line: Строка для преобразования
     :return: Перевёрнутая строка
     """
@@ -143,7 +160,7 @@ def reverse_string(line: str) -> str:
 
     return line[lnlin-1] + reverse_string(line[:lnlin-1])
 
-# ************  Задача №7
+# ************ Задача №7
 
 def is_palindrome(line: str) -> bool:
     """
@@ -162,19 +179,31 @@ def is_palindrome(line: str) -> bool:
 
     if lnlin == 1: return True
 
-    slice = line[1:lnlin-1]
+    _slice = line[1:lnlin-1]
 
-    is_palindrome(slice)
+    is_palindrome(_slice)
 
-    right_elm = slice[len(slice) - 1]
-    left_elm = slice[0]
+    right_elm = _slice[len(_slice) - 1]
+    left_elm = _slice[0]
 
     return True if left_elm == right_elm else False
 
 
+def fibonacci(number: int) -> int:
+    """
+    Функция принимает на вход целое неотрицательное число n
+    и возвращает n-е число в последовательности Фибоначчи
+    Пример:
+    13 -> 233
+    :param number: Число в последовательности Фибоначчи
+    :return: Значение этого числа
+    """
+    vld.__check_type_int(number), vld.__check__number_positive(number)
 
-# print(is_palindrome('0123456789876543220'))
+    if number == 0:
+        return 0
 
+    elif number == 1:
+        return 1
 
-
-
+    return fibonacci(number - 1) + fibonacci(number - 2)
