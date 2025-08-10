@@ -195,6 +195,8 @@ def is_palindrome(line: str) -> bool:
     return True if left_elm == right_elm else False
 
 
+# ************ Задача №8
+
 def fibonacci(number: int) -> int:
     """
     Функция принимает на вход целое неотрицательное число n
@@ -214,6 +216,8 @@ def fibonacci(number: int) -> int:
 
     return fibonacci(number - 1) + fibonacci(number - 2)
 
+
+# ************ Задача №9
 
 def sum_of_digits(number: int) -> int:
     """
