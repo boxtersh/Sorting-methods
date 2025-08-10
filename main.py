@@ -1,11 +1,13 @@
-#from random import randint as rnd
+# from random import randint as rnd
 import time
 import validate as vld
+
+
 # ********************************** Модуль №5. Задание №3 ***************************************************
 # ************  Задача №1. Сортировка “Пузырька” 10.79, 17.71 (с повтором) - [rnd(1,100) for _ in range(10000)]
 
-def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y: x > y,
-                                                        key = lambda obj: obj )->list[int|float]:
+def bubble_sorting_ascending_order(arr: list[int | float], order_by=lambda x, y: x > y,
+                                   key=lambda obj: obj) -> list[int | float]:
     """
     Функция принимает на вход массив элементов, анонимную функцию key (задает ключ сортировки)
     и анонимную функцию order_by (задает признак сортировки).
@@ -28,17 +30,18 @@ def bubble_sorting_ascending_order(arr: list[int|float], order_by = lambda x, y:
     for i in range(len_arr - 1):
         for j in range(len_arr - 1 - i):
 
-            if order_by(key(arr[j]), key(arr[j+1])):
-                arr[j], arr[j + 1] = arr[j+1], arr[j]
+            if order_by(key(arr[j]), key(arr[j + 1])):
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
     end = time.time() - _start
 
     return arr
 
+
 # ************  Задача №2. Сортировка выбором + подсчет операций 6.79, 13.22 (с повтором) - [rnd(1,100) for _ in range(10000)]
 
-def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
-                                                    key = lambda obj: obj)->(list[int|float], int, int):
+def sorting_permutations(arr: list[int | float], order_by=lambda x, y: x < y,
+                         key=lambda obj: obj) -> (list[int | float], int, int):
     """
     Функция принимает на вход массив элементов, анонимную функцию key (задает ключ сортировки)
     и анонимную функцию order_by (задает признак сортировки),
@@ -60,9 +63,9 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
     count_compare = 0
     count_swap = 0
 
-    for i in  range(len_arr - 1):
+    for i in range(len_arr - 1):
         max_i = i
-        for j in range(i+1, len_arr):
+        for j in range(i + 1, len_arr):
 
             if order_by(key(arr[max_i]), key(arr[j])):
                 max_i = j
@@ -76,9 +79,10 @@ def sorting_permutations(arr: list[int|float], order_by = lambda x, y: x < y,
     end = time.time() - _start
     return arr, count_compare, count_swap
 
+
 # ************ Задача №3
 
-def recursive_sum(array: list[int|float])->int|float:
+def recursive_sum(array: list[int | float]) -> int | float:
     """
     Функция принимает на вход массив элементов и возвращает сумму всех элементов массива
     Пример:
@@ -94,9 +98,10 @@ def recursive_sum(array: list[int|float])->int|float:
 
     return array[0] + recursive_sum(array[1:])
 
+
 # ************ Задача №4
 
-def recursive_max(array: list[int|float]) -> int|float:
+def recursive_max(array: list[int | float]) -> int | float:
     """
     Функция принимает на вход массив элементов и возвращает максимальный элемент массива
     Пример:
@@ -116,10 +121,10 @@ def recursive_max(array: list[int|float]) -> int|float:
 
     return array[0] if array[0] > max_elm else max_elm
 
+
 # ************ Задача №5
 
 def recursive_sum_even_elem(array: list[int | float]) -> int | float:
-
     """
     Функция принимает на вход массив элементов и возвращает сумму всех четных элементов массива
     Пример:
@@ -135,8 +140,8 @@ def recursive_sum_even_elem(array: list[int | float]) -> int | float:
 
     if len(array) == 1: return array[0] if array[0] % 2 == 0 else 0
 
-
     return (array[0] if array[0] % 2 == 0 else 0) + recursive_sum_even_elem(array[1:])
+
 
 # ************ Задача №6
 
@@ -158,7 +163,8 @@ def reverse_string(line: str) -> str:
 
     if lnlin == 1: return line[0]
 
-    return line[lnlin-1] + reverse_string(line[:lnlin-1])
+    return line[lnlin - 1] + reverse_string(line[:lnlin - 1])
+
 
 # ************ Задача №7
 
@@ -179,7 +185,7 @@ def is_palindrome(line: str) -> bool:
 
     if lnlin == 1: return True
 
-    _slice = line[1:lnlin-1]
+    _slice = line[1:lnlin - 1]
 
     is_palindrome(_slice)
 
@@ -207,3 +213,29 @@ def fibonacci(number: int) -> int:
         return 1
 
     return fibonacci(number - 1) + fibonacci(number - 2)
+
+
+def sum_of_digits(number: int) -> int:
+    """
+    Функция принимает на вход целое число и возвращает сумму его цифр
+    Пример:
+    0 -> 0
+    1234 -> 10
+    -1234 -> 10
+    :param number: целое число
+    :return: сумма цифр числа number
+    """
+    vld.__check_type_int(number)
+
+    if number == 0:
+        return 0
+
+    elif number < 0:
+        number *= -1
+
+    elif number % 10 == 0:
+        return 0
+
+    next = number // 10
+
+    return number % 10 + sum_of_digits(next)
