@@ -237,7 +237,7 @@ def sum_of_digits(number: int) -> int:
     elif number < 0:
         number *= -1
 
-    elif number % 10 == 0:
+    elif number % 10 == 0 and number // 10 == 0:
         return 0
 
     next = number // 10
