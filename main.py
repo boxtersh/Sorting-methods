@@ -65,7 +65,7 @@ def sorting_permutations(arr: list[int | float], order_by=lambda x, y: x < y,
 
     for i in range(len_arr - 1):
         max_i = i
-        for j in range(i + 1, len_arr):
+        for j in range(i + 1, len_arr-i):
 
             if order_by(key(arr[max_i]), key(arr[j])):
                 max_i = j
@@ -79,6 +79,9 @@ def sorting_permutations(arr: list[int | float], order_by=lambda x, y: x < y,
     end = time.time() - _start
     return arr, count_compare, count_swap
 
+# [1,3,2,5,3,7,4,6,2,9,1,0]
+#([9, 7, 6, 5, 4, 3, 3, 2, 2, 1, 1, 0], 36, 4)
+# без условия ([9, 7, 6, 5, 4, 3, 3, 2, 2, 1, 1, 0], 36, 11)
 
 # ************ Задача №3
 
