@@ -192,8 +192,8 @@ def is_palindrome(line: str) -> bool:
 
     is_palindrome(_slice)
 
-    right_elm = _slice[len(_slice) - 1]
-    left_elm = _slice[0]
+    right_elm = line[lnlin - 1]
+    left_elm = line[0]
 
     return True if left_elm == right_elm else False
 
